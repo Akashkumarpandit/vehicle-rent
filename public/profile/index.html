@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Profile • Vehicle Renter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="page">
+    <header class="topbar">
+      <div class="container nav">
+        <a href="/" class="brand"><img class="logo" src="/logo.svg" alt="Logo"/> Vehicle Renter</a>
+        <nav class="links">
+          <a href="/">Home</a>
+          <a href="/vehicles/">Vehicles</a>
+          <a href="/destinations/">Destinations</a>
+          <a href="/payments/">Payments</a>
+          <a href="/profile/" class="active">Profile</a>
+        </nav>
+        <nav class="auth">
+          <a href="/login/" id="nav-login">Login</a>
+          <a href="/signup/" class="btn primary" id="nav-signup">Sign Up</a>
+          <button id="btn-logout" class="btn secondary" style="display:none">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>My Profile</h1>
+      <p class="muted">Manage your account settings and documents.</p>
+
+      <div class="grid two" style="align-items:start; gap:1.2rem">
+        <div class="card" style="max-width:360px">
+          <div style="display:grid; place-items:center; padding:1rem 0">
+            <div style="width:120px;height:120px;border-radius:999px;background:#e5e7eb;display:grid;place-items:center;color:#6b7280;">100 × 100</div>
+            <div id="prof-name" style="font-weight:800; margin-top:.8rem">John Doe</div>
+            <div id="prof-email" class="muted" style="font-size:.95rem">john.doe@example.com</div>
+          </div>
+          <div style="padding:0 1rem 1rem">
+            <a class="btn primary" style="width:100%">Edit Profile</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="card form" style="margin-bottom:1rem">
+            <h3>Personal Information</h3>
+            <p class="muted">Update your personal details here.</p>
+            <div class="grid two">
+              <label>Full Name
+                <input id="input-name" placeholder="John Doe" />
+              </label>
+              <label>Email Address
+                <input id="input-email" type="email" placeholder="john.doe@example.com" />
+              </label>
+              <label>Phone Number
+                <input id="input-phone" placeholder="+1 (555) 123-4567" />
+              </label>
+            </div>
+            <button id="btn-save" class="btn primary" style="width:max-content">Save Changes</button>
+          </div>
+
+          <div class="card form">
+            <h3>Documents</h3>
+            <p class="muted">Upload your driver's license and ID for verification.</p>
+            <label>Driver's License
+              <input type="file" />
+            </label>
+            <label>ID Card
+              <input type="file" />
+            </label>
+            <button class="btn secondary" id="btn-upload" style="width:max-content">Upload</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/config.js"></script>
+    <script type="module" src="/js/common.js"></script>
+    <script type="module" src="/js/profile.js"></script>
+  </body>
+</html>
