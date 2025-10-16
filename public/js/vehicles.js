@@ -90,6 +90,14 @@ function renderLuxury() {
   })
 }
 
+function getParams() {
+  const u = new URL(location.href)
+  return {
+    q: (u.searchParams.get('q') || '').toLowerCase(),
+    type: (u.searchParams.get('type') || '').toLowerCase()
+  }
+}
+
 async function renderVehicles() {
   const grid = document.getElementById('vehicles-grid')
   grid.innerHTML = 'Loading vehicles...'
@@ -102,14 +110,19 @@ async function renderVehicles() {
       ...(Array.isArray(data) ? data : [])
     ])
 
-    const q = (document.getElementById('search').value || '').toLowerCase()
-    const filtered = merged.filter((v) =>
-      [v.make, v.model, v.type, ...(v.features || [])]
+    const { q, type } = getParams()
+    if (q) document.getElementById('search').value = q
+
+    const filtered = merged.filter((v) => {
+      const text = [v.make, v.model, v.type, ...(v.features || [])]
         .filter(Boolean)
         .join(' ')
         .toLowerCase()
-        .includes(q)
-    )
+      const okQ = !q || text.includes(q)
+      const okType = !type || (v.type || '').toLowerCase().includes(type)
+      return okQ && okType
+    })
+
     grid.innerHTML = ''
     filtered.slice(0, 24).forEach(v => {
       const wrapper = document.createElement('div')

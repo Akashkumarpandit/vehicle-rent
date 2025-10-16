@@ -23,7 +23,7 @@ app.use('/api/suggestions', require('./routes/suggestions'))
 
 // Default: send homepage
 app.get('/', (_req, res) => {
-  res.sendFile(path.join(__dirname, '../public/vehicles/index.html'))
+  res.sendFile(path.join(__dirname, '../public/home/index.html'))
 })
 
 module.exports = app
