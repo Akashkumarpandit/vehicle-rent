@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get Smart Destination Suggestions • Vehicle Renter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="page">
+    <header class="topbar">
+      <div class="container nav">
+<a href="/vehicles/" class="brand"><img class="logo" src="/logo.svg" alt="Logo"/> Vehicle Renter</a>
+        <nav class="links">
+          <a href="/vehicles/">Vehicles</a>
+          <a href="/destinations/" class="active">Destinations</a>
+          <a href="/payments/">Payments</a>
+        </nav>
+        <nav class="auth">
+          <a href="/login/" id="nav-login">Login</a>
+          <a href="/signup/" class="btn primary" id="nav-signup">Sign Up</a>
+          <button id="btn-logout" class="btn secondary" style="display:none">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Get Smart Destination Suggestions</h1>
+      <p class="muted">Let our assistant suggest destinations near your rental location.</p>
+
+      <form id="form-suggest" class="card form" style="max-width:800px;margin:auto">
+        <div class="grid two">
+          <label>Rental Location
+            <select id="location">
+              <option value="">Select a location</option>
+              <option value="37.7749,-122.4194">San Francisco</option>
+              <option value="34.0522,-118.2437">Los Angeles</option>
+              <option value="40.7128,-74.0060">New York</option>
+            </select>
+          </label>
+          <label>Weather
+            <select id="weather">
+              <option>Sunny</option>
+              <option>Cloudy</option>
+              <option>Rainy</option>
+            </select>
+          </label>
+          <label>Time of Year
+            <select id="month">
+              <option>Spring</option>
+              <option>Summer</option>
+              <option>Autumn</option>
+              <option>Winter</option>
+            </select>
+          </label>
+          <label>Interests
+            <input id="interests" placeholder="e.g. hiking, museums, food" />
+          </label>
+        </div>
+        <button class="btn primary" type="submit" style="margin-top:1rem">Suggest Destinations</button>
+      </form>
+
+      <div id="suggestions" class="grid" style="margin-top:1.5rem"></div>
+    </main>
+
+
+    <script src="/config.js"></script>
+    <script type="module" src="/js/common.js"></script>
+    <script type="module" src="/js/destinations.js"></script>
+  </body>
+</html>

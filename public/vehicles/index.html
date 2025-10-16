@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vehicles • Vehicle Renter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="page">
+    <header class="topbar">
+      <div class="container nav">
+<a href="/vehicles/" class="brand"><img class="logo" src="/logo.svg" alt="Logo"/> Vehicle Renter</a>
+        <nav class="links">
+          <a href="/vehicles/" class="active">Vehicles</a>
+          <a href="/destinations/">Destinations</a>
+          <a href="/payments/">Payments</a>
+        </nav>
+        <nav class="auth">
+          <a href="/login/" id="nav-login">Login</a>
+          <a href="/signup/" class="btn primary" id="nav-signup">Sign Up</a>
+          <button id="btn-logout" class="btn secondary" style="display:none">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Browse Vehicles</h1>
+      <p class="muted">Pick a vehicle that fits your trip.</p>
+
+      <section style="margin:1.25rem 0">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
+          <h2 style="margin:.25rem 0">Luxury Collection <span class="badge premium">Premium</span></h2>
+          <a class="btn secondary" href="/payments/">Unlock Premium</a>
+        </div>
+        <p class="muted" style="margin-top:.25rem">Top-tier cars for special occasions.</p>
+        <div id="luxury-grid" class="grid"></div>
+      </section>
+
+      <div class="toolbar">
+<input type="search" id="search" placeholder="Search vehicles (e.g., BMW, Ninja, Activa)" />
+      </div>
+
+      <div id="vehicles-grid" class="grid"></div>
+    </main>
+
+
+    <script src="/config.js"></script>
+    <script type="module" src="/js/common.js"></script>
+    <script type="module" src="/js/vehicles.js"></script>
+  </body>
+</html>

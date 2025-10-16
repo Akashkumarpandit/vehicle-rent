@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Methods • Vehicle Renter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="page">
+    <header class="topbar">
+      <div class="container nav">
+<a href="/vehicles/" class="brand"><img class="logo" src="/logo.svg" alt="Logo"/> Vehicle Renter</a>
+        <nav class="links">
+          <a href="/vehicles/">Vehicles</a>
+          <a href="/destinations/">Destinations</a>
+          <a href="/payments/" class="active">Payments</a>
+        </nav>
+        <nav class="auth">
+          <a href="/login/" id="nav-login">Login</a>
+          <a href="/signup/" class="btn primary" id="nav-signup">Sign Up</a>
+          <button id="btn-logout" class="btn secondary" style="display:none">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Payment Methods</h1>
+      <p class="muted">Manage your saved payment methods for faster checkout.</p>
+
+      <div class="card" style="max-width:900px;margin:auto">
+        <h3>Saved Payment Methods</h3>
+        <p class="muted">You have no saved payment methods.</p>
+      </div>
+
+      <div class="card form" style="max-width:900px;margin:1rem auto 0">
+        <h3>Add a New Payment Method</h3>
+        <p class="muted">Your payment information is stored securely.</p>
+        <label>Card Number
+          <input placeholder="0000 0000 0000 0000" />
+        </label>
+        <div class="grid two">
+          <label>Expiry Date
+            <input placeholder="MM/YY" />
+          </label>
+          <label>CVC
+            <input placeholder="123" />
+          </label>
+        </div>
+        <button class="btn primary" id="btn-add-card">Add Card</button>
+      </div>
+    </main>
+
+
+    <script src="/config.js"></script>
+    <script type="module" src="/js/common.js"></script>
+    <script type="module" src="/js/payments.js"></script>
+  </body>
+</html>
