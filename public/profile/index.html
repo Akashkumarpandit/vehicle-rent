@@ -35,11 +35,17 @@
       <div class="grid two" style="align-items:start; gap:1.2rem">
         <div class="card" style="max-width:360px">
           <div style="display:grid; place-items:center; padding:1rem 0">
-            <div style="width:120px;height:120px;border-radius:999px;background:#e5e7eb;display:grid;place-items:center;color:#6b7280;">100 × 100</div>
+<div id="avatar" style="width:120px;height:120px;border-radius:999px;background:#e5e7eb;display:grid;place-items:center;color:#6b7280;overflow:hidden;">
+              <span>100 × 100</span>
+            </div>
             <div id="prof-name" style="font-weight:800; margin-top:.8rem">John Doe</div>
             <div id="prof-email" class="muted" style="font-size:.95rem">john.doe@example.com</div>
           </div>
-          <div style="padding:0 1rem 1rem">
+          <div style="padding:0 1rem 1rem;display:grid;gap:.5rem">
+            <label class="btn secondary" style="text-align:center;cursor:pointer">
+              Change Photo
+              <input id="file-photo" type="file" accept="image/*" style="display:none" />
+            </label>
             <a class="btn primary" style="width:100%">Edit Profile</a>
           </div>
         </div>

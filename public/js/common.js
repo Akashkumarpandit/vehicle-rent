@@ -19,9 +19,13 @@ export async function api(path, opts = {}) {
   if (authEnabled && auth?.currentUser) {
     try { headers['Authorization'] = `Bearer ${await getIdToken(auth.currentUser, true)}` } catch {}
   }
+  // If body is FormData, let the browser set Content-Type
+  if (opts?.body instanceof FormData) delete headers['Content-Type']
   const res = await fetch(path, { ...opts, headers })
   if (!res.ok) throw new Error(await res.text())
-  return res.json()
+  // Try JSON, otherwise return text
+  const text = await res.text()
+  try { return JSON.parse(text) } catch { return text }
 }
 
 function updateNav(user) {
