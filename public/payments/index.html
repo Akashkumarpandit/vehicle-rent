@@ -32,7 +32,18 @@
       <h1>Payment Methods</h1>
       <p class="muted">Manage your saved payment methods for faster checkout.</p>
 
-      <div class="card" style="max-width:900px;margin:auto">
+      <div class="searchbar" style="margin:1rem 0 1.5rem">
+        <input id="global-search" placeholder="Search vehicles (e.g., BMW, Ninja, Activa)" />
+        <button class="btn primary" id="global-search-btn">Search</button>
+      </div>
+      <div class="chips">
+        <span class="muted">Quick filters:</span>
+        <a class="chip" data-type="Car" href="#">Cars</a>
+        <a class="chip" data-type="Bike" href="#">Bikes</a>
+        <a class="chip" data-type="Scooter" href="#">Scooters</a>
+      </div>
+
+      <div class="card" style="max-width:900px;margin:1.2rem auto 0">
         <h3>Saved Payment Methods</h3>
         <p class="muted">You have no saved payment methods.</p>
       </div>

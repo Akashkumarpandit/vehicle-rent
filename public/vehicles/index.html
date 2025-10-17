@@ -32,6 +32,11 @@
       <h1>Browse Vehicles</h1>
       <p class="muted">Pick a vehicle that fits your trip.</p>
 
+      <div class="searchbar" style="margin:.6rem 0 1.2rem">
+        <input type="search" id="search" placeholder="Search vehicles (e.g., BMW, Ninja, Activa)" />
+        <button class="btn primary" id="btn-search">Search</button>
+      </div>
+
       <section style="margin:1.25rem 0">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
           <h2 style="margin:.25rem 0">Luxury Collection <span class="badge premium">Premium</span></h2>
@@ -40,10 +45,6 @@
         <p class="muted" style="margin-top:.25rem">Top-tier cars for special occasions.</p>
         <div id="luxury-grid" class="grid"></div>
       </section>
-
-      <div class="toolbar">
-        <input type="search" id="search" placeholder="Search vehicles (e.g., BMW, Ninja, Activa)" />
-      </div>
 
       <div id="vehicles-grid" class="grid"></div>
     </main>

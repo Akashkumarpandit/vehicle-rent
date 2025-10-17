@@ -136,7 +136,9 @@ async function renderVehicles() {
 }
 
 function main() {
-  document.getElementById('search')?.addEventListener('input', renderVehicles)
+  const doSearch = () => renderVehicles()
+  document.getElementById('search')?.addEventListener('input', doSearch)
+  document.getElementById('btn-search')?.addEventListener('click', doSearch)
   renderLuxury()
   renderVehicles()
 }

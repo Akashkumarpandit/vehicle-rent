@@ -1,5 +1,12 @@
 import { $, api } from './common.js'
 
+function goToVehicles(q = '', type = '') {
+  const params = new URLSearchParams()
+  if (q) params.set('q', q)
+  if (type) params.set('type', type)
+  location.href = `/vehicles/?${params.toString()}`
+}
+
 function main() {
   document.getElementById('btn-add-card')?.addEventListener('click', async () => {
     const btn = document.getElementById('btn-add-card')
@@ -16,6 +23,13 @@ function main() {
       btn.textContent = 'Add Card'
     }
   })
+
+  document.getElementById('global-search-btn')?.addEventListener('click', () => {
+    goToVehicles(document.getElementById('global-search').value)
+  })
+  document.querySelectorAll('.chip[data-type]')?.forEach(chip =>
+    chip.addEventListener('click', (e) => { e.preventDefault(); goToVehicles('', chip.dataset.type) })
+  )
 }
 
 document.addEventListener('DOMContentLoaded', main)
