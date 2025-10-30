@@ -1,33 +1,34 @@
 import { $, api } from './common.js'
 
-// Hand-picked suggestions (cars, bikes, scooters) – shown if API is empty and mixed in for variety
+// Hand-picked suggestions (cars and bikes)
 const SUGGESTIONS = [
-  // Cars
-  { make: 'BMW', model: '3 Series', year: 2022, type: 'Car', pricePerDay: 95 },
-  { make: 'Mercedes-Benz', model: 'C-Class', year: 2021, type: 'Car', pricePerDay: 110 },
-  { make: 'Audi', model: 'A4', year: 2020, type: 'Car', pricePerDay: 99 },
-  { make: 'Tesla', model: 'Model 3', year: 2022, type: 'Car', pricePerDay: 130 },
-  { make: 'Toyota', model: 'Camry', year: 2021, type: 'Car', pricePerDay: 70 },
-  // Bikes
-  { make: 'Kawasaki', model: 'Ninja 400', year: 2021, type: 'Bike', pricePerDay: 65 },
-  { make: 'Suzuki', model: 'Hayabusa', year: 2022, type: 'Bike', pricePerDay: 120 },
-  { make: 'Royal Enfield', model: 'Classic 350', year: 2022, type: 'Bike', pricePerDay: 45 },
-  { make: 'Yamaha', model: 'R15 V4', year: 2022, type: 'Bike', pricePerDay: 55 },
-  // Scooters
-  { make: 'Honda', model: 'Activa 6G', year: 2022, type: 'Scooter', pricePerDay: 20 },
-  { make: 'Ola', model: 'S1 Pro', year: 2023, type: 'Scooter', pricePerDay: 25 },
-  { make: 'TVS', model: 'Jupiter', year: 2021, type: 'Scooter', pricePerDay: 18 },
-  { make: 'Bajaj', model: 'Chetak', year: 2023, type: 'Scooter', pricePerDay: 24 }
+  { make: 'BMW', model: '3 Series', year: 2022, type: 'Car', pricePerDay: 95, imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop' },
+  { make: 'Mercedes-Benz', model: 'C-Class', year: 2021, type: 'Car', pricePerDay: 110, imageUrl: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop' },
+  { make: 'Audi', model: 'A4', year: 2020, type: 'Car', pricePerDay: 99, imageUrl: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop' },
+  { make: 'Tesla', model: 'Model 3', year: 2022, type: 'Car', pricePerDay: 130, imageUrl: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop' },
+  { make: 'Toyota', model: 'Camry', year: 2021, type: 'Car', pricePerDay: 70, imageUrl: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop' },
+  { make: 'Ford', model: 'Mustang', year: 2023, type: 'Car', pricePerDay: 120, imageUrl: 'https://cdn.pixabay.com/photo/2018/11/17/18/58/shelby-3821716_1280.jpg' },
+  // Affordable bikes
+  { make: 'Honda', model: 'CBR500R', year: 2023, type: 'Bike', pricePerDay: 45, imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400&h=300&fit=crop' },
+  { make: 'Yamaha', model: 'MT-07', year: 2022, type: 'Bike', pricePerDay: 50, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/12/32/yamaha-5894293_1280.jpg' },
+  { make: 'Kawasaki', model: 'Z400', year: 2023, type: 'Bike', pricePerDay: 70, imageUrl: 'https://cdn.pixabay.com/photo/2017/10/05/14/38/motorcycle-2819604_1280.jpg' },
+  { make: 'BMW', model: 'G310R', year: 2022, type: 'Bike', pricePerDay: 42, imageUrl: 'https://cdn.pixabay.com/photo/2017/08/21/15/47/bike-2665810_960_720.jpg' }
 ]
 
 const LUXURY = [
-  { make: 'Rolls‑Royce', model: 'Phantom', year: 2022, type: 'Luxury', pricePerDay: 800, imageUrl: 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Lamborghini', model: 'Aventador', year: 2021, type: 'Luxury', pricePerDay: 900, imageUrl: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Porsche', model: '911 Carrera', year: 2022, type: 'Luxury', pricePerDay: 650, imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Ferrari', model: '488 GTB', year: 2020, type: 'Luxury', pricePerDay: 950, imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Pagani', model: 'Huayra', year: 2019, type: 'Luxury', pricePerDay: 1500, imageUrl: 'https://images.unsplash.com/photo-1616353077842-8a2f6b2f25e6?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Bentley', model: 'Continental GT', year: 2021, type: 'Luxury', pricePerDay: 700, imageUrl: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1600&auto=format&fit=crop' },
-  { make: 'Land Rover', model: 'Defender', year: 2023, type: 'Luxury', pricePerDay: 400, imageUrl: 'https://images.unsplash.com/photo-1610460688666-1e0f1d233a7a?q=80&w=1600&auto=format&fit=crop' }
+  { make: 'Rolls-Royce', model: 'Phantom', year: 2022, type: 'Luxury', pricePerDay: 800, imageUrl: 'https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=400&h=300&fit=crop' },
+  { make: 'Lamborghini', model: 'Aventador', year: 2021, type: 'Luxury', pricePerDay: 900, imageUrl: 'https://images.unsplash.com/photo-1621135802920-133df287f89c?w=400&h=300&fit=crop' },
+  { make: 'Porsche', model: '911 Carrera', year: 2022, type: 'Luxury', pricePerDay: 650, imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop' },
+  { make: 'Ferrari', model: '488 GTB', year: 2020, type: 'Luxury', pricePerDay: 950, imageUrl: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop' },
+  { make: 'bugatti ', model: 'cheron', year: 2019, type: 'Luxury', pricePerDay: 1500, imageUrl: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop' },
+  { make: 'Bentley', model: 'Continental GT', year: 2021, type: 'Luxury', pricePerDay: 700, imageUrl: 'https://cdn.pixabay.com/photo/2014/11/24/23/48/bentley-544739_1280.jpg' },
+  { make: 'Land Rover', model: 'Defender', year: 2023, type: 'Luxury', pricePerDay: 400, imageUrl: 'https://cdn.pixabay.com/photo/2017/04/20/10/37/range-rover-2245376_1280.jpg' },
+  // Luxury bikes
+  { make: 'Kawasaki', model: 'Ninja H2', year: 2023, type: 'Luxury Bike', pricePerDay: 250, imageUrl: 'https://cdn.pixabay.com/photo/2021/04/19/05/12/kawasaki-ninja-h2r-6190256_1280.jpg' },
+  { make: 'Suzuki', model: 'Hayabusa', year: 2022, type: 'Luxury Bike', pricePerDay: 220, imageUrl: 'https://cdn.pixabay.com/photo/2015/03/15/05/28/suzuki-674060_1280.jpg' },
+  { make: 'BMW', model: 'S1000RR', year: 2023, type: 'Luxury Bike', pricePerDay: 280, imageUrl: 'https://cdn.pixabay.com/photo/2017/07/09/12/03/bmw-2486777_1280.jpg' },
+  { make: 'Ducati', model: 'Panigale V4', year: 2023, type: 'Luxury Bike', pricePerDay: 300, imageUrl: 'https://cdn.pixabay.com/photo/2017/04/19/14/35/ducati-2242487_1280.jpg' },
+  { make: 'Yamaha', model: 'YZF-R1', year: 2022, type: 'Luxury Bike', pricePerDay: 240, imageUrl: 'https://cdn.pixabay.com/photo/2020/04/10/14/58/motorcycle-5026152_1280.jpg' }
 ]
 
 function shuffle(arr) {
@@ -39,34 +40,8 @@ function shuffle(arr) {
   return a
 }
 
-const CURATED_IMAGES = {
-  'bmw 3 series car': 'photo-1619767886558-efdc259cde1a',
-  'mercedes-benz c-class car': 'photo-1549924231-f129b911e442',
-  'audi a4 car': 'photo-1511919884226-fd3cad34687c',
-  'tesla model 3 car': 'photo-1511391405990-2598c2fe917b',
-  'toyota camry car': 'photo-1517677208171-0bc6725a3e60',
-  'kawasaki ninja 400 motorcycle': 'photo-1518655048521-f130df041f66',
-  'suzuki hayabusa motorcycle': 'photo-1503376780353-7e6692767b70',
-  'royal enfield classic 350 motorcycle': 'photo-1542362567-b07e54358753',
-  'yamaha r15 v4 motorcycle': 'photo-1558981806-ec527fa84c39',
-  'honda activa 6g scooter': 'photo-1518128959339-72e8f0f12f39',
-  'ola s1 pro scooter': 'photo-1606216794074-735e7b2f52ce',
-  'tvs jupiter scooter': 'photo-1606216794640-2dfdcc3eaad2',
-  'bajaj chetak scooter': 'photo-1585386959984-a4155223168f'
-}
-
-function getImage(v) {
-  const typeKey = (v.type || '').toLowerCase()
-  const kind = typeKey.includes('bike') ? 'motorcycle' : typeKey.includes('scooter') ? 'scooter' : 'car'
-  const key = `${(v.make||'').toLowerCase()} ${(v.model||'').toLowerCase()} ${kind}`.replace(/\s+/g,' ').trim()
-  const photoId = CURATED_IMAGES[key]
-  if (photoId) return `https://images.unsplash.com/${photoId}?q=80&w=1600&auto=format&fit=crop`
-  const q = encodeURIComponent(`${v.make || ''} ${v.model || ''} ${kind}`.trim())
-  return `https://source.unsplash.com/800x600/?${q}`
-}
-
 function cardHtml(v, premium = false) {
-  const img = getImage(v)
+  const img = v.imageUrl || 'https://via.placeholder.com/400x300/333/fff?text=Vehicle'
   return `
     <div class="card vehicle-card">
       ${premium ? '<span class="badge premium" style="position:absolute;top:10px;left:10px">Premium</span>' : ''}
@@ -105,9 +80,15 @@ async function renderVehicles() {
     let data = []
     try { data = await api('/api/vehicles') } catch {}
 
+    // If data from API doesn't have imageUrl, add placeholder
+    const normalized = (Array.isArray(data) ? data : []).map(v => ({
+      ...v,
+      imageUrl: v.imageUrl || 'https://via.placeholder.com/400x300/333/fff?text=Vehicle'
+    }))
+
     const merged = shuffle([
       ...SUGGESTIONS,
-      ...(Array.isArray(data) ? data : [])
+      ...normalized
     ])
 
     const { q, type } = getParams()
@@ -144,3 +125,4 @@ function main() {
 }
 
 document.addEventListener('DOMContentLoaded', main)
+
