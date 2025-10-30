@@ -29,3 +29,4 @@ Backend for the "rent vehicle" app using Node.js, Express, and MongoDB.
 - POST /payments/create-intent { amount, currency }
 - GET /suggestions?lat=&lng=&month=&interests=
 
+# vehicle_rent_final
