@@ -22,11 +22,11 @@ Backend for the "rent vehicle" app using Node.js, Express, and MongoDB.
 2) Start dev server: npm run dev
 
 ## API Sketch
-- GET /health
+- GET /home 
 - GET /vehicles
 - POST /bookings
 - GET /maps/distance?orig=lat,lng&dest=lat,lng
 - POST /payments/create-intent { amount, currency }
 - GET /suggestions?lat=&lng=&month=&interests=
 
-# vehicle_rent_final
+# vehicle renter app 
